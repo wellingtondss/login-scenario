@@ -8,10 +8,11 @@ const selectorList = {
   loginButton: "[type='submit']",
   sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
   dashboardGrid: ".orangehrm-dashboard-grid",
-  wrongCrendentialAlert: "[role='alert']"
+  wrongCrendentialAlert: "[role='alert']",
+  myInfoButton: '[href="/web/index.php/pim/viewMyDetails"]'
 }
 
-it('Login - Sucess', () => {
+it.only('User Info Update - Sucess', () => {
 
    cy.visit('/auth/login')
    cy.get(selectorList.usernameField).type(userData.userSuccess.username)
@@ -19,6 +20,7 @@ it('Login - Sucess', () => {
    cy.get(selectorList.loginButton).click()
    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
    cy.get(selectorList.dashboardGrid)
+   cy.get(selectorList.myInfoButton).click
   })
 
 it('Login - Fail', () => {
